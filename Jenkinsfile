@@ -14,13 +14,14 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("ckorley4uo/train-schedule")
+                    app = docker.build("ckorley4/train-schedule")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
                 }
             }
-             stage('Push Docker Image') {
+        }
+        stage('Push Docker Image') {
             when {
                 branch 'master'
             }
@@ -32,5 +33,6 @@ pipeline {
                     }
                 }
             }
+        }
     }
 }
